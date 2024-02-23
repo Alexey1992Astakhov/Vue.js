@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue.js HW_02</title>
+  </head>
+  <body>
+    <!-- Вы разрабатываете приложение для отображения и сортировки списка товаров. У вас есть массив объектов products, где каждый объект представляет товар с его названием и ценой. Вам необходимо отобразить список товаров и предоставить пользователю возможность сортировать товары по цене (по возрастанию и по убыванию). -->
+    <div id="app">
+      <h1>Товары</h1>
+      <button @click="sortAsc">По возрастанию цены</button>
+      <button @click="sortDesc">По убыванию цены</button>
+      <button @click="unsort">По умолчанию</button>
+      <ul>
+        <li v-for="item in products" :key="item.id">
+          <div
+            style="
+              border: 1.5px solid rgb(233, 96, 4);
+              width: 250px;
+              margin-bottom: 20px;
+              padding: 25px;
+            "
+          >
+            <h3>{{ item.productName }}</h3>
+            <p>{{ item.price }} €</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          products: [
+            {
+              id: 1,
+              productName: "Playstation slim 5",
+              price: 900,
+            },
+            {
+              id: 2,
+              productName: "Xbox series S",
+              price: 500,
+            },
+            {
+              id: 3,
+              productName: "Apple vision PRO",
+              price: 2500,
+            },
+            {
+              id: 4,
+              productName: "Apple iphone 15 pro 512 GB",
+              price: 1000,
+            },
+            {
+              id: 5,
+              productName: "Geely Coolray",
+              price: 25000,
+            },
+          ],
+        },
+        methods: {
+          sortAsc() {
+            this.products.sort((a, b) => a.price - b.price);
+          },
+          sortDesc() {
+            this.products.sort((a, b) => -(a.price - b.price));
+          },
+          unsort() {
+            location.reload();
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
